@@ -1,0 +1,156 @@
+/* Maco Music hereda el dorado global tal cual — es su universo natural. */
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:100svh; position:relative; isolation:isolate;
+  display:flex; align-items:flex-end; overflow:hidden;
+}
+.hero-photo{ position:absolute; inset:0; z-index:0; }
+.hero-photo img{
+  width:100%; height:100%; object-fit:cover; object-position:62% 22%;
+  filter:saturate(1.02) contrast(1.05);
+}
+.hero-photo::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(90deg, rgba(12,10,8,0.97) 0%, rgba(12,10,8,0.86) 32%, rgba(12,10,8,0.25) 58%, rgba(12,10,8,0.05) 100%),
+    linear-gradient(0deg, rgba(12,10,8,0.75) 0%, rgba(12,10,8,0) 34%);
+}
+.hero-inner{ position:relative; z-index:2; width:100%; padding:8rem 6vw 5.5rem; }
+.hero-copy{ max-width:34rem; }
+
+.seq{ opacity:0; animation:seqIn .9s var(--ease) forwards; animation-delay:calc(var(--d) * 0.11s + 0.15s); }
+@keyframes seqIn{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce){ .seq{ animation:none; opacity:1; } }
+
+.eyebrow-line{ font-size:0.82rem; color:var(--ink-dim); letter-spacing:0.03em; margin-bottom:1.3rem; }
+h1.wordmark{
+  font-family:var(--serif); font-style:italic; font-weight:600;
+  font-variation-settings:"SOFT" 60, "WONK" 1;
+  font-size:clamp(4.8rem, 13vw, 10.5rem); line-height:0.84; letter-spacing:-0.01em;
+  color:var(--ink); margin-left:-0.04em;
+}
+.wordmark .accent{ color:var(--gold); }
+.sub-name{ font-weight:400; font-size:1.05rem; letter-spacing:0.05em; color:var(--ink-dim); margin-top:0.7rem; }
+.tagline{
+  font-family:var(--serif); font-size:clamp(1.3rem, 2.1vw, 1.7rem); font-weight:500;
+  color:var(--gold-soft); margin-top:1.9rem; max-width:20ch;
+}
+.identity-list{ margin-top:2.1rem; display:flex; flex-direction:column; gap:0.55rem; list-style:none; }
+.identity-list li{ font-size:0.92rem; color:var(--ink-dim); padding-left:1.1rem; position:relative; }
+.identity-list li::before{ content:""; position:absolute; left:0; top:0.55em; width:6px; height:1px; background:var(--gold); }
+.hero-socials{ margin-top:2.5rem; display:flex; gap:1.2rem; }
+.hero-socials a{
+  width:38px; height:38px; border:1px solid var(--line-strong); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  transition:border-color .3s ease, transform .3s ease, background .3s ease;
+}
+.hero-socials a:hover{ border-color:var(--gold); background:rgba(199,154,86,0.1); transform:translateY(-2px); }
+.hero-socials svg{ width:16px; height:16px; fill:var(--ink); }
+
+.scroll-cue{
+  position:absolute; bottom:2.2rem; left:6vw; z-index:3;
+  display:flex; align-items:center; gap:0.7rem; font-size:0.75rem; color:var(--ink-faint);
+}
+.scroll-cue .line{ width:1px; height:34px; background:var(--line-strong); position:relative; overflow:hidden; }
+.scroll-cue .line::after{
+  content:""; position:absolute; top:-100%; left:0; width:100%; height:100%;
+  background:var(--gold); animation:scrollmove 2.2s ease-in-out infinite;
+}
+@keyframes scrollmove{ 0%{ top:-100%; } 60%{ top:100%; } 100%{ top:100%; } }
+@media (prefers-reduced-motion: reduce){ .scroll-cue .line::after{ animation:none; top:0; } }
+
+/* ---------- SOBRE MACO ---------- */
+.about{ background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.about-grid{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:5vw; align-items:center; }
+.about-photo{ position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:4px; }
+.about-photo img{ width:100%; height:100%; object-fit:cover; object-position:50% 22%; transition:transform 1.2s var(--ease); }
+.about-photo:hover img{ transform:scale(1.04); }
+.about-text p{ font-size:1.12rem; color:var(--ink-dim); line-height:1.75; max-width:52ch; }
+.about-text p + p{ margin-top:1.2rem; }
+.facets{ margin-top:2.6rem; display:flex; flex-wrap:wrap; gap:0.5rem 2.2rem; padding-top:1.8rem; border-top:1px solid var(--line); }
+.facets span{ font-family:var(--serif); font-style:italic; font-size:1.25rem; color:var(--ink); padding:0.4rem 0; }
+
+/* ---------- TRAYECTORIA (timeline) ---------- */
+.path-list{ position:relative; padding-left:3.6rem; }
+.path-list::before{ content:""; position:absolute; left:1.05rem; top:0.4rem; bottom:0.4rem; width:1px; background:var(--line-strong); }
+.path-item{ position:relative; display:grid; grid-template-columns:1.3fr 0.9fr; gap:4vw; align-items:center; padding:3rem 0; }
+.path-item:not(:last-child){ border-bottom:1px solid var(--line); }
+.path-mark{
+  position:absolute; left:-3.6rem; top:3.1rem; width:2.1rem; height:2.1rem;
+  border:1px solid var(--gold); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif); font-style:italic; font-size:0.85rem; color:var(--gold); background:var(--bg);
+}
+.path-role{ font-size:0.82rem; color:var(--gold); letter-spacing:0.03em; margin-bottom:0.6rem; }
+.path-title{ font-family:var(--serif); font-weight:500; font-size:clamp(1.5rem,2.6vw,2.1rem); color:var(--ink); }
+.path-desc{ color:var(--ink-dim); margin-top:0.9rem; max-width:48ch; line-height:1.65; }
+.path-visual{ aspect-ratio:5/4; overflow:hidden; border-radius:4px; }
+.path-visual img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+.path-item:hover .path-visual img{ transform:scale(1.05); }
+.path-visual.media-placeholder .media-placeholder__word{ line-height:1.05; }
+
+@media (max-width:820px){
+  .path-list{ padding-left:2.6rem; }
+  .path-list::before{ left:0.55rem; }
+  .path-mark{ left:-2.6rem; }
+  .path-item{ grid-template-columns:1fr; }
+  .path-visual{ order:-1; }
+}
+
+/* ---------- PROYECTOS ---------- */
+.projects{ background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.project-block{ padding:3.4rem 0; border-top:1px solid var(--line); display:grid; grid-template-columns:1fr; gap:1.1rem; }
+.project-block:first-of-type{ border-top:none; padding-top:0; }
+.project-name{ font-family:var(--serif); font-weight:600; font-size:clamp(2rem,4.4vw,3.4rem); color:var(--ink); }
+.project-body{ max-width:56ch; }
+.project-desc{ color:var(--ink-dim); line-height:1.7; }
+.project-note{ color:var(--ink-faint); font-style:italic; margin-top:0.9rem; font-size:0.92rem; }
+.project-link{
+  display:inline-flex; align-items:center; margin-top:1.4rem; font-size:0.9rem;
+  border-bottom:1px solid rgba(230,205,156,0.35); padding-bottom:2px;
+  transition:color .3s ease, border-color .3s ease;
+}
+.project-a .project-name{ color:var(--gold-soft); }
+.project-b .project-link, .project-b .project-name{ color:var(--gold); }
+.project-b .project-link{ border-color:rgba(199,154,86,0.4); }
+.project-c .project-name{ color:var(--ember,#a4502c); }
+.project-c .project-link{ color:#d38a63; border-color:rgba(164,80,44,0.45); }
+.project-link:hover{ opacity:0.75; }
+@media (min-width:720px){
+  .project-block{ grid-template-columns:0.55fr 1fr; gap:4vw; align-items:baseline; }
+  .project-b{ grid-template-columns:1fr 0.55fr; }
+  .project-b .project-name{ order:2; text-align:right; }
+  .project-b .project-body{ order:1; }
+}
+
+/* ---------- WE ARE FEST banner ---------- */
+.fest-banner{ position:relative; height:64vh; min-height:420px; overflow:hidden; }
+.fest-banner img{ position:absolute; top:-10%; left:0; width:100%; height:120%; object-fit:cover; object-position:50% 22%; will-change:transform; }
+.fest-banner::after{ content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(12,10,8,0.94) 8%, rgba(12,10,8,0.1) 62%); }
+.fest-caption{ position:absolute; left:6vw; bottom:2.6rem; z-index:2; max-width:34ch; }
+.fest-caption h3{ font-family:var(--serif); font-weight:500; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--ink); }
+.fest-handle{ color:var(--ink-dim); margin-top:0.6rem; font-size:0.98rem; }
+
+/* ---------- CONTACTO ---------- */
+.contact{ position:relative; padding:0; overflow:hidden; }
+.contact-photo{ position:absolute; inset:0; z-index:0; overflow:hidden; }
+.contact-photo img{ position:absolute; top:-10%; left:0; width:100%; height:120%; object-fit:cover; object-position:65% 20%; opacity:0.55; will-change:transform; }
+.contact-photo::after{ content:""; position:absolute; inset:0; background:radial-gradient(80% 70% at 30% 40%, rgba(12,10,8,0.55) 0%, rgba(12,10,8,0.95) 78%); }
+.contact-inner{ position:relative; z-index:1; padding:10rem 0; text-align:left; }
+h2.contact-title{
+  font-family:var(--serif); font-style:italic; font-weight:600;
+  font-size:clamp(2.6rem, 7vw, 5.4rem); line-height:1; max-width:14ch;
+}
+.contact-sub{ color:var(--ink-dim); margin-top:1.6rem; max-width:48ch; font-size:1.05rem; line-height:1.65; }
+.contact-actions{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.6rem; }
+
+/* ---------- back-link ---------- */
+.universe-back{ font-size:0.82rem; color:var(--ink-dim); }
+.universe-back:hover{ color:var(--gold); }
+
+@media (max-width:900px){
+  .hero-inner{ padding:7rem 6vw 4rem; }
+  .about-grid{ grid-template-columns:1fr; }
+  .about-photo{ max-width:420px; }
+}

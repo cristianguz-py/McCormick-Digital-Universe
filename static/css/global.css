@@ -1,0 +1,293 @@
+/* =========================================================
+   McCORMICK DIGITAL UNIVERSE — SISTEMA GLOBAL
+   Variables, reset, navegación, footer, botones, utilidades
+   compartidas por Home / Maco / C&MC / Melanie.
+   ========================================================= */
+
+:root{
+  /* --- núcleo compartido: fondo, tinta, dorado --- */
+  --bg:#0c0a08;
+  --bg-panel:#151109;
+  --bg-panel2:#1c160e;
+  --ink:#f3ede1;
+  --ink-dim:#9c9284;
+  --ink-faint:#6b6459;
+  --gold:#c79a56;
+  --gold-soft:#e6cd9c;
+  --line: rgba(243,237,225,0.13);
+  --line-strong: rgba(243,237,225,0.25);
+
+  /* --- por defecto, "accent" = dorado. Cada universo lo redefine --- */
+  --accent: var(--gold);
+  --accent-soft: var(--gold-soft);
+
+  /* --- tipografía --- */
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Work Sans", -apple-system, sans-serif;
+
+  /* --- espaciado / forma --- */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-pill: 999px;
+  --ease: cubic-bezier(.16,.8,.24,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth; color-scheme:dark;}
+html,body{background:var(--bg); overflow-x:hidden;}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+button{font:inherit; color:inherit; background:none; border:none; cursor:pointer; padding:0; text-align:inherit;}
+::selection{background:var(--accent); color:#0c0a08;}
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+
+.skip-link{
+  position:absolute; left:-999px; top:1rem; z-index:400;
+  background:var(--accent); color:#0c0a08; padding:0.7rem 1.2rem; border-radius:4px; font-size:0.9rem;
+}
+.skip-link:focus{ left:1rem; }
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+}
+
+.wrap{ max-width:1320px; margin:0 auto; padding:0 6vw; }
+
+.reveal{
+  opacity:0; transform:translateY(24px);
+  transition:opacity .9s ease, transform .9s var(--ease);
+}
+.reveal.in{ opacity:1; transform:none; }
+
+section{ position:relative; padding:9rem 0; }
+.section-head{ max-width:44ch; margin-bottom:4rem; }
+.kicker{
+  font-family:var(--serif); font-style:italic; font-size:1.05rem;
+  color:var(--accent); margin-bottom:0.7rem; font-weight:500;
+}
+h2.section-title{
+  font-family:var(--serif); font-weight:600;
+  font-size:clamp(2.1rem, 4vw, 3.2rem);
+  line-height:1.08; color:var(--ink);
+}
+@media (max-width:900px){ section{ padding:6rem 0; } }
+
+/* ---------- NAV (compartida) ---------- */
+header.site-nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.7rem 6vw;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:padding .4s ease, background .4s ease, border-color .4s ease, backdrop-filter .4s ease;
+}
+header.site-nav.scrolled{
+  padding:1.1rem 6vw;
+  background:rgba(12,10,8,0.75);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-lockup{ display:flex; align-items:baseline; gap:0.6rem; }
+.logo-mark{
+  font-family:var(--serif); font-weight:600; font-style:italic;
+  font-size:1.3rem; letter-spacing:0.01em; color:var(--ink);
+}
+.logo-sep{ color:var(--ink-faint); font-size:0.85rem; }
+.logo-universe{
+  font-size:0.78rem; color:var(--ink-dim); letter-spacing:0.03em;
+}
+nav.links{ display:flex; gap:2.2rem; }
+nav.links a{
+  font-size:0.86rem; color:var(--ink-dim); position:relative; padding-bottom:3px;
+  transition:color .3s ease;
+}
+nav.links a::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+  background:var(--accent); transition:width .35s ease;
+}
+nav.links a:hover{ color:var(--ink); }
+nav.links a:hover::after, nav.links a[aria-current="page"]::after{ width:100%; }
+nav.links a[aria-current="page"]{ color:var(--ink); }
+
+.nav-toggle{ display:none; width:34px; height:24px; position:relative; z-index:200; }
+.nav-toggle span{
+  position:absolute; left:0; width:100%; height:1px; background:var(--ink);
+  transition:transform .35s ease, opacity .2s ease, top .35s ease;
+}
+.nav-toggle span:nth-child(1){ top:2px; }
+.nav-toggle span:nth-child(2){ top:11px; }
+.nav-toggle span:nth-child(3){ top:20px; }
+.nav-toggle.open span:nth-child(1){ top:11px; transform:rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity:0; }
+.nav-toggle.open span:nth-child(3){ top:11px; transform:rotate(-45deg); }
+
+.mobile-menu{
+  position:fixed; inset:0; background:var(--bg); z-index:90;
+  display:flex; flex-direction:column; justify-content:center; gap:1.6rem;
+  padding:0 8vw;
+  transform:translateY(-100%);
+  transition:transform .55s var(--ease);
+}
+.mobile-menu.open{ transform:translateY(0); }
+.mobile-menu a{ font-family:var(--serif); font-size:2.1rem; font-weight:500; color:var(--ink-dim); }
+.mobile-menu a:hover, .mobile-menu a[aria-current="page"]{ color:var(--ink); }
+
+@media (max-width:900px){
+  nav.links{ display:none; }
+  .nav-toggle{ display:block; }
+}
+
+/* ---------- BOTONES ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:0.6rem;
+  padding:0.95rem 1.7rem;
+  border:1px solid var(--line-strong);
+  border-radius:var(--radius-pill);
+  font-size:0.9rem;
+  transition:border-color .3s ease, background .3s ease, color .3s ease, opacity .3s ease;
+}
+.btn.primary{ background:var(--accent); color:#0c0a08; border-color:var(--accent); }
+.btn.primary:hover{ background:var(--accent-soft); border-color:var(--accent-soft); }
+.btn.ghost:hover{ border-color:var(--ink); }
+.btn.ghost{ border-color:var(--line-strong); }
+
+/* ---------- ESPACIO DE IMAGEN PREPARADO (sin foto real todavía) ----------
+   Reutilizado en toda la plataforma para no fingir una fotografía que
+   no existe: textura + palabra en contorno, misma lógica que "A Otro Nivel". */
+.media-placeholder{
+  background:
+    repeating-linear-gradient(135deg, transparent 0 22px, var(--line) 22px 23px),
+    var(--bg-panel2);
+  border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:2rem;
+}
+.media-placeholder__word{
+  font-family:var(--serif); font-style:italic; font-weight:600;
+  font-size:clamp(1.5rem, 3vw, 2.3rem);
+  line-height:1.1;
+  color:transparent;
+  -webkit-text-stroke:1px var(--ink-dim);
+}
+.media-placeholder__note{
+  display:block; margin-top:0.8rem; font-family:var(--sans); font-style:normal;
+  -webkit-text-stroke:0; color:var(--ink-faint); font-size:0.78rem; letter-spacing:0.02em;
+}
+
+/* ---------- LIGHTBOX (compartido) ---------- */
+.lightbox{
+  position:fixed; inset:0; background:rgba(6,5,4,0.95); z-index:300;
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity .3s ease;
+}
+.lightbox.open{ opacity:1; pointer-events:auto; }
+.lightbox img{ max-width:86vw; max-height:82vh; border-radius:4px; }
+.lightbox-close{
+  position:absolute; top:1.8rem; right:2rem; color:var(--ink); font-size:1rem;
+  border:1px solid var(--line-strong); border-radius:50%; width:40px; height:40px;
+  display:flex; align-items:center; justify-content:center; transition:border-color .3s ease;
+}
+.lightbox-close:hover{ border-color:var(--accent); }
+.lightbox-nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  color:var(--ink); font-size:2rem; line-height:1;
+  border:1px solid var(--line-strong); border-radius:50%; width:48px; height:48px;
+  display:flex; align-items:center; justify-content:center; transition:border-color .3s ease;
+}
+.lightbox-nav:hover{ border-color:var(--accent); }
+.lightbox-prev{ left:1.6rem; }
+.lightbox-next{ right:1.6rem; }
+@media (max-width:640px){
+  .lightbox-nav{ width:38px; height:38px; font-size:1.5rem; }
+  .lightbox-prev{ left:0.6rem; } .lightbox-next{ right:0.6rem; }
+}
+
+/* ---------- GALERÍA (grid compartido) ---------- */
+.gallery-grid{
+  display:grid; grid-template-columns:repeat(6, 1fr); grid-auto-rows:14vw; gap:0.6rem;
+}
+.g-item{
+  overflow:hidden; border-radius:var(--radius-sm); cursor:pointer; position:relative;
+  display:block; width:100%; height:100%;
+}
+.g-item img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .7s var(--ease), filter .5s ease;
+  filter:grayscale(0.15);
+}
+.g-item:hover img, .g-item:focus-visible img{ transform:scale(1.06); filter:grayscale(0); }
+.g-item.g1{ grid-column:span 2; grid-row:span 2; }
+.g-item.g2{ grid-column:span 2; grid-row:span 1; }
+.g-item.g3{ grid-column:span 2; grid-row:span 1; }
+.g-item.g4{ grid-column:span 2; grid-row:span 2; }
+.g-item.g5{ grid-column:span 2; grid-row:span 2; }
+.g-item.g6{ grid-column:span 2; grid-row:span 1; }
+.g-item.media-placeholder{ cursor:default; }
+@media (max-width:820px){
+  .gallery-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:42vw; }
+  .g-item{ grid-column:span 1 !important; grid-row:span 1 !important; }
+}
+
+/* ---------- CONTACTO GLOBAL (CTA + WhatsApp flotante) ---------- */
+.global-contact{
+  background:var(--bg-panel);
+  border-top:1px solid var(--line);
+  text-align:left;
+}
+.global-contact .section-head{ margin-bottom:2.6rem; }
+.contact-prompts{
+  display:grid; gap:1.4rem;
+  grid-template-columns:repeat(3, 1fr);
+  margin-bottom:3rem;
+}
+.contact-prompt{
+  padding:1.6rem; border:1px solid var(--line); border-radius:var(--radius-md);
+}
+.contact-prompt p{ color:var(--ink-dim); font-size:0.95rem; line-height:1.5; }
+.contact-prompt a{ color:var(--ink); font-weight:500; }
+.contact-prompt a:hover{ color:var(--gold); }
+@media (max-width:820px){ .contact-prompts{ grid-template-columns:1fr; } }
+
+.whatsapp-float{
+  position:fixed; right:1.4rem; bottom:1.4rem; z-index:150;
+  display:flex; align-items:center; gap:0.6rem;
+  padding:0.8rem 1.1rem 0.8rem 0.8rem;
+  background:var(--bg-panel2); border:1px solid var(--line-strong); border-radius:var(--radius-pill);
+  transition:border-color .3s ease, transform .3s ease;
+}
+.whatsapp-float:hover{ border-color:var(--gold); transform:translateY(-2px); }
+.whatsapp-float__icon{
+  width:34px; height:34px; border-radius:50%; background:var(--gold); color:#0c0a08;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.whatsapp-float__icon svg{ width:17px; height:17px; fill:currentColor; }
+.whatsapp-float__text{ display:flex; flex-direction:column; line-height:1.2; }
+.whatsapp-float__label{ font-size:0.82rem; color:var(--ink); }
+.whatsapp-float__status{ font-size:0.68rem; color:var(--ink-faint); }
+
+/* ---------- FOOTER GLOBAL ---------- */
+footer.site-footer{ border-top:1px solid var(--line); padding:3.4rem 0 2.2rem; }
+.footer-top{
+  display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:2.4rem;
+  padding-bottom:2.4rem;
+}
+.footer-brand .logo-mark{ font-size:1.5rem; }
+.footer-brand p:last-child{ color:var(--ink-faint); margin-top:0.4rem; font-size:0.85rem; }
+.footer-cols{ display:flex; gap:4rem; flex-wrap:wrap; }
+.footer-col h4{ font-size:0.78rem; color:var(--ink-faint); font-weight:500; margin-bottom:0.9rem; letter-spacing:0.03em; }
+.footer-col a{ display:block; font-size:0.9rem; color:var(--ink-dim); margin-bottom:0.55rem; }
+.footer-col a:hover{ color:var(--ink); }
+.footer-bottom{
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+  padding-top:1.8rem; border-top:1px solid var(--line);
+  font-size:0.78rem; color:var(--ink-faint);
+}
+.footer-bottom a{ color:var(--ink-faint); }
+.footer-bottom a:hover{ color:var(--gold); }

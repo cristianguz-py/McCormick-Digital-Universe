@@ -1,0 +1,19 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Nueva sugerencia — McCormick{% endblock %}
+{% block page_title %}Nueva sugerencia{% endblock %}
+
+{% block dashboard_content %}
+<div class="dash-panel" style="max-width:640px;">
+  <form method="post" enctype="multipart/form-data" class="dash-form" data-loading-text="Enviando sugerencia...">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="field-group">
+        <label class="field-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}<p style="color:#e6a3a3; font-size:0.8rem; margin-top:0.3rem;">{{ field.errors|striptags }}</p>{% endif %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn primary">Enviar sugerencia</button>
+  </form>
+</div>
+{% endblock %}

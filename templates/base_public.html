@@ -1,0 +1,100 @@
+{% load static %}<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}McCormick — Universo Creativo{% endblock %}</title>
+<meta name="description" content="{% block meta_description %}McCormick Digital Universe.{% endblock %}">
+<meta property="og:title" content="{% block og_title %}McCormick{% endblock %}">
+<meta property="og:description" content="{% block og_description %}{% endblock %}">
+<meta property="og:type" content="website">
+{% block noindex %}{% endblock %}
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{% block favicon_glyph %}✦{% endblock %}</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+{% block page_css %}{% endblock %}
+</head>
+<body data-contact-phone="{{ CONTACT_PHONE }}" data-contact-ready="{{ CONTACT_PHONE_READY|yesno:'1,0' }}" data-page="{{ active_page }}">
+
+<a class="skip-link" href="#inicio">Ir al contenido</a>
+
+<header class="site-nav" id="siteNav">
+  <a href="{% url 'core:home' %}" class="nav-lockup">
+    {% block nav_logo %}<span class="logo-mark">McCormick</span>{% endblock %}
+  </a>
+  <nav class="links" aria-label="Navegación principal">
+    <a href="{% url 'core:home' %}" {% if active_page == 'home' %}aria-current="page"{% endif %}>Inicio</a>
+    <a href="{% url 'core:maco' %}" {% if active_page == 'maco' %}aria-current="page"{% endif %}>Maco</a>
+    <a href="{% url 'core:cmc' %}" {% if active_page == 'cmc' %}aria-current="page"{% endif %}>C&amp;MC</a>
+    <a href="{% url 'core:melanie' %}" {% if active_page == 'melanie' %}aria-current="page"{% endif %}>Melanie</a>
+    <a href="#contacto">Contacto</a>
+    <a href="{% url 'accounts:login' %}" {% if active_page == 'login' %}aria-current="page"{% endif %}>Acceso Privado</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="{% url 'core:home' %}">Inicio</a>
+  <a href="{% url 'core:maco' %}">Maco</a>
+  <a href="{% url 'core:cmc' %}">C&amp;MC</a>
+  <a href="{% url 'core:melanie' %}">Melanie</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<main id="inicio">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        {% block footer_brand %}<p class="logo-mark">McCormick</p>{% endblock %}
+        <p>{% block footer_tag %}Universo creativo — Maco · C&amp;MC · Melanie{% endblock %}</p>
+      </div>
+      <div class="footer-cols">
+        {% block footer_cols %}
+        <div class="footer-col">
+          <h4>Navegar</h4>
+          <a href="{% url 'core:home' %}">Inicio</a>
+          <a href="{% url 'core:maco' %}">Maco</a>
+          <a href="{% url 'core:cmc' %}">C&amp;MC</a>
+          <a href="{% url 'core:melanie' %}">Melanie</a>
+        </div>
+        {% endblock %}
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {{ CURRENT_YEAR }} McCormick</span>
+      <a href="{% url 'core:home' %}">Diseñado y desarrollado por Cristian Guzmán</a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" id="whatsappFloat" href="#">
+  <span class="whatsapp-float__icon">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5.2.5.7 1.8.8 1.9.1.2.1.3 0 .5-.1.2-.1.3-.3.5l-.4.5c-.1.2-.3.3-.1.6.2.3.9 1.5 1.9 2.4 1.3 1.2 2.4 1.5 2.7 1.7.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.7.8c.2.1.3.2.4.3.1.2.1.9-.1 1.6z"/></svg>
+  </span>
+  <span class="whatsapp-float__text">
+    <span class="whatsapp-float__label">Contrataciones</span>
+    <span class="whatsapp-float__status">Cargando…</span>
+  </span>
+</a>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Fotografía ampliada">
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
+  <button type="button" class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Foto anterior">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button type="button" class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Foto siguiente">›</button>
+</div>
+
+<script src="{% static 'js/global.js' %}"></script>
+<script src="{% static 'js/analytics.js' %}"></script>
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

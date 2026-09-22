@@ -1,0 +1,13 @@
+{% extends "base_public.html" %}
+{% block title %}Página no encontrada — McCormick{% endblock %}
+{% block noindex %}<meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+<section style="min-height:70vh; display:flex; align-items:center;">
+  <div class="wrap" style="text-align:center;">
+    <p class="kicker">404</p>
+    <h1 class="section-title">No encontramos esta página.</h1>
+    <p style="color:var(--ink-dim); margin-top:1rem;">Puede que el enlace esté roto o la página se haya movido.</p>
+    <p style="margin-top:2rem;"><a class="btn primary" href="{% url 'core:home' %}">Volver al inicio</a></p>
+  </div>
+</section>
+{% endblock %}

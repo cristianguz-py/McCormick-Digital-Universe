@@ -1,0 +1,61 @@
+{% load static %}<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>{% block title %}Dashboard — McCormick{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+
+<div class="dash-shell">
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-brand">McCormick<span class="accent">.</span></div>
+    <nav class="dash-nav">
+      <a href="{% url 'dashboard:overview' %}" class="{% if active_tab == 'overview' %}active{% endif %}">Overview</a>
+      <a href="{% url 'dashboard:overview' %}#analytics" class="{% if active_tab == 'analytics' %}active{% endif %}">Analytics</a>
+      <a href="{% url 'suggestions:list' %}" class="{% if active_tab == 'sugerencias' %}active{% endif %}">Sugerencias</a>
+      {% if user.is_super_admin %}
+        <a href="{% url 'finance:contract_list' %}" class="{% if active_tab == 'contrataciones' %}active{% endif %}">Contrataciones</a>
+        <a href="{% url 'finance:income_list' %}" class="{% if active_tab == 'ingresos' %}active{% endif %}">Ingresos</a>
+        <a href="{% url 'dashboard:activity' %}" class="{% if active_tab == 'actividad' %}active{% endif %}">Actividad</a>
+        <a href="{% url 'dashboard:users' %}" class="{% if active_tab == 'usuarios' %}active{% endif %}">Usuarios</a>
+      {% endif %}
+      <a href="{% url 'accounts:profile' %}" class="{% if active_tab == 'perfil' %}active{% endif %}">Perfil</a>
+      <form method="post" action="{% url 'accounts:logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="dash-logout">Cerrar sesión</button>
+      </form>
+    </nav>
+  </aside>
+
+  <div class="dash-main">
+    <div class="dash-topbar">
+      <button class="dash-sidebar-toggle" id="dashSidebarToggle">☰ Menú</button>
+      <h1>{% block page_title %}Panel{% endblock %}</h1>
+      <div class="dash-user"><strong>{{ user.display_name }}</strong> · {{ user.get_role_display }}</div>
+    </div>
+    <div class="dash-content">
+      {% block dashboard_content %}{% endblock %}
+    </div>
+  </div>
+</div>
+
+<div class="toast-stack" id="toastStack">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="toast {{ message.tags }}" data-toast>{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

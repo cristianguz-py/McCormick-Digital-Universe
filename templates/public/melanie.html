@@ -1,0 +1,105 @@
+{% extends "base_public.html" %}
+{% load static %}
+{% block title %}Melanie McCormick — Danza{% endblock %}
+{% block meta_description %}Melanie McCormick: bailarina. Movimiento, expresión y disciplina artística. Parte de McCormick Digital Universe.{% endblock %}
+{% block og_title %}Melanie McCormick — Danza{% endblock %}
+{% block og_description %}Bailarina. Movimiento y expresión artística.{% endblock %}
+{% block favicon_glyph %}✧{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{% static 'css/melanie.css' %}">{% endblock %}
+
+{% block nav_logo %}<span class="logo-universe">McCormick</span><span class="logo-sep">/</span><span class="logo-mark">Melanie</span>{% endblock %}
+
+{% block content %}
+
+<section class="melanie-hero">
+  <div class="wrap melanie-hero-inner">
+    <p class="eyebrow-line">McCormick Digital Universe</p>
+    <h1>Melanie<br><span class="accent">McCormick</span></h1>
+    <p class="subline">Danza / Bailarina</p>
+    <p class="lede">Movimiento como lenguaje. Melanie McCormick es bailarina — su universo está hecho de expresión, disciplina y escena.</p>
+  </div>
+</section>
+
+<section class="melanie-about" id="sobre">
+  <div class="wrap melanie-about-grid">
+    <div class="melanie-media media-placeholder reveal">
+      <span class="media-placeholder__word">Melanie<br>McCormick</span>
+      <span class="media-placeholder__note">Fotografía próximamente</span>
+    </div>
+    <div class="melanie-about-text reveal">
+      <p class="kicker">¿Quién es Melanie?</p>
+      <h2 class="section-title">El cuerpo como forma de contar.</h2>
+      <p>Melanie McCormick está vinculada a la danza y se desempeña como bailarina. Su forma de expresarse pasa por el movimiento, el escenario y la disciplina que exige el arte de bailar.</p>
+      <p>Esta página está preparada para crecer: cuando existan más detalles sobre su trayectoria, estilo y presentaciones, este espacio se ampliará con ellos.</p>
+    </div>
+  </div>
+</section>
+
+<section id="movimiento">
+  <div class="wrap">
+    <div class="motion-words reveal">
+      <span>Movimiento</span>
+      <span>Expresión</span>
+      <span>Ritmo</span>
+      <span>Escena</span>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Galería</p>
+      <h2 class="section-title">Un espacio en construcción.</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item g1 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">01</span></div>
+      <div class="g-item g2 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">02</span></div>
+      <div class="g-item g3 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">03</span></div>
+      <div class="g-item g4 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">04</span></div>
+      <div class="g-item g5 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">05</span></div>
+      <div class="g-item g6 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">06</span></div>
+    </div>
+    <p class="gallery-note">Espacio preparado para las fotografías reales de Melanie — próximamente.</p>
+  </div>
+</section>
+
+<section class="global-contact" id="contacto">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Contacto</p>
+      <h2 class="section-title">¿Quieres contactar a Melanie?</h2>
+    </div>
+    <a class="btn primary" id="contactCta" href="#" data-track-event="cta_click" data-track-page="melanie">Hablar con nosotros</a>
+    <p style="margin-top:1.4rem;"><a class="universe-back" href="{% url 'core:home' %}">← Volver a McCormick Digital Universe</a></p>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block footer_brand %}<p class="logo-mark">Melanie</p>{% endblock %}
+{% block footer_tag %}McCormick — parte de <a class="universe-back" href="{% url 'core:home' %}">McCormick Digital Universe</a>{% endblock %}
+{% block footer_cols %}
+<div class="footer-col">
+  <h4>Navegar</h4>
+  <a href="#sobre">Sobre Melanie</a>
+  <a href="#galeria">Galería</a>
+</div>
+<div class="footer-col">
+  <h4>Universo</h4>
+  <a href="{% url 'core:home' %}">Inicio</a>
+  <a href="{% url 'core:maco' %}">Maco</a>
+  <a href="{% url 'core:cmc' %}">C&amp;MC</a>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('contactCta').addEventListener('click', (e) => {
+    e.preventDefault();
+    const wa = document.getElementById('whatsappFloat');
+    wa.click();
+    wa.scrollIntoView({ block: 'end', behavior: 'smooth' });
+  });
+</script>
+{% endblock %}

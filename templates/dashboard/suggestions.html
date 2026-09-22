@@ -1,0 +1,34 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Sugerencias — McCormick{% endblock %}
+{% block page_title %}Sugerencias{% endblock %}
+
+{% block dashboard_content %}
+<p style="margin-bottom:1.4rem;"><a class="btn primary" href="{% url 'suggestions:create' %}">+ Nueva sugerencia</a></p>
+
+<div class="dash-panel">
+  {% if suggestions %}
+    <div class="dash-table-wrap">
+      <table class="dash-table">
+        <thead><tr>
+          {% if user.is_super_admin %}<th>Persona</th>{% endif %}
+          <th>Título</th><th>Sección</th><th>Prioridad</th><th>Fecha</th><th>Estado</th>
+        </tr></thead>
+        <tbody>
+          {% for s in suggestions %}
+          <tr onclick="window.location='{% url 'suggestions:detail' s.pk %}'" style="cursor:pointer;">
+            {% if user.is_super_admin %}<td>{{ s.user.display_name }}</td>{% endif %}
+            <td>{{ s.title }}</td>
+            <td>{{ s.section|default:"—" }}</td>
+            <td>{{ s.get_priority_display }}</td>
+            <td>{{ s.created_at|date:"d/m/Y" }}</td>
+            <td><span class="badge badge-{{ s.status }}">{{ s.get_status_display }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty-state">Todavía no hay registros.</p>
+  {% endif %}
+</div>
+{% endblock %}

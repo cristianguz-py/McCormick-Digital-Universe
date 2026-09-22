@@ -1,0 +1,48 @@
+{% extends "base_public.html" %}
+{% load static %}
+{% block title %}Acceso privado — McCormick Digital Universe{% endblock %}
+{% block noindex %}<meta name="robots" content="noindex">{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{% static 'css/login.css' %}">{% endblock %}
+
+{% block content %}
+<section class="login-screen">
+  <div class="login-card">
+    <p class="login-eyebrow">McCormick Digital Universe</p>
+    <h1 class="login-title">Acceso privado</h1>
+    <p class="login-subtitle">Ingresa con tu usuario y contraseña.</p>
+
+    {% if form.errors %}
+      <div class="login-errors">Usuario o contraseña incorrectos.</div>
+    {% endif %}
+
+    <form method="post" id="loginForm">
+      {% csrf_token %}
+      <div class="field-group">
+        <label class="field-label" for="{{ form.username.id_for_label }}">Usuario</label>
+        {{ form.username }}
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="{{ form.password.id_for_label }}">Contraseña</label>
+        {{ form.password }}
+      </div>
+      <label class="field-checkbox">
+        {{ form.remember_me }} Recordarme
+      </label>
+      <button type="submit" class="login-submit" id="loginSubmit">Ingresar</button>
+      <input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+    <a class="login-back" href="{% url 'core:home' %}">← Volver a McCormick Digital Universe</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(){
+    const btn = document.getElementById('loginSubmit');
+    btn.disabled = true;
+    btn.textContent = 'Ingresando...';
+  });
+</script>
+{% endblock %}

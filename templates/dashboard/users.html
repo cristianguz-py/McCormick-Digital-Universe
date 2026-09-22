@@ -1,0 +1,41 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Usuarios — McCormick{% endblock %}
+{% block page_title %}Usuarios{% endblock %}
+
+{% block dashboard_content %}
+<div class="dash-panel">
+  <div class="dash-table-wrap">
+    <table class="dash-table">
+      <thead><tr><th>Usuario</th><th>Nombre</th><th>Rol</th><th>Estado</th><th>Creado</th><th></th></tr></thead>
+      <tbody>
+        {% for u in users %}
+        <tr>
+          <td>{{ u.username }}</td>
+          <td>{{ u.display_name }}</td>
+          <td>{{ u.get_role_display }}</td>
+          <td>
+            {% if u.is_active %}<span class="badge badge-completed">Activo</span>
+            {% else %}<span class="badge badge-rejected">Inactivo</span>{% endif %}
+          </td>
+          <td>{{ u.created_at|date:"d/m/Y" }}</td>
+          <td>
+            {% if u != request.user %}
+            <form method="post" action="{% url 'dashboard:user_toggle' u.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn ghost" style="padding:0.4rem 0.9rem; font-size:0.8rem;">
+                {% if u.is_active %}Desactivar{% else %}Activar{% endif %}
+              </button>
+            </form>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:1.2rem; font-size:0.82rem; color:var(--ink-faint);">
+    Para crear nuevos usuarios o restablecer contraseñas de forma administrativa, usa el
+    <a href="/admin/" style="color:var(--gold);">Django Admin</a>.
+  </p>
+</div>
+{% endblock %}

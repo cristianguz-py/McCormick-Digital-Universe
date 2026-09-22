@@ -1,0 +1,116 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Overview — McCormick{% endblock %}
+{% block page_title %}{% if user.is_super_admin %}McCormick Admin{% else %}Overview{% endif %}{% endblock %}
+
+{% block dashboard_content %}
+
+<div id="analytics"></div>
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <p class="kpi-label">Vistas de página (30 días)</p>
+    {% if analytics_summary.page_view %}
+      <p class="kpi-value">{{ analytics_summary.page_view }}</p>
+    {% else %}
+      <p class="kpi-value empty">Sin datos</p>
+    {% endif %}
+  </div>
+  <div class="kpi-card">
+    <p class="kpi-label">Clicks sociales</p>
+    {% if analytics_summary.social_click %}
+      <p class="kpi-value">{{ analytics_summary.social_click }}</p>
+    {% else %}
+      <p class="kpi-value empty">Sin datos</p>
+    {% endif %}
+  </div>
+  <div class="kpi-card">
+    <p class="kpi-label">Clicks de contacto</p>
+    {% if analytics_summary.contact_click %}
+      <p class="kpi-value">{{ analytics_summary.contact_click }}</p>
+    {% else %}
+      <p class="kpi-value empty">Sin datos</p>
+    {% endif %}
+  </div>
+  <div class="kpi-card">
+    <p class="kpi-label">Sugerencias pendientes</p>
+    <p class="kpi-value">{{ pending_suggestions }}</p>
+  </div>
+  {% if user.is_super_admin %}
+  <div class="kpi-card">
+    <p class="kpi-label">Ingresos pagados (registros)</p>
+    <p class="kpi-value">{{ income_total }}</p>
+  </div>
+  <div class="kpi-card">
+    <p class="kpi-label">Contrataciones</p>
+    <p class="kpi-value">{{ contracts_total }}</p>
+  </div>
+  <div class="kpi-card">
+    <p class="kpi-label">Usuarios</p>
+    <p class="kpi-value">{{ users_total }}</p>
+  </div>
+  {% endif %}
+</div>
+
+<div class="dash-panel">
+  <h2>Vistas de página por mes</h2>
+  {% if monthly_pageviews %}
+    <div class="dash-table-wrap">
+      <table class="dash-table">
+        <thead><tr><th>Mes</th><th>Vistas</th></tr></thead>
+        <tbody>
+          {% for row in monthly_pageviews %}
+          <tr><td>{{ row.month }}/{{ row.year }}</td><td>{% if row.count %}{{ row.count }}{% else %}Sin datos{% endif %}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty-state">Sin datos suficientes todavía.</p>
+  {% endif %}
+</div>
+
+<div class="dash-panel">
+  <h2>Sugerencias recientes</h2>
+  {% if recent_suggestions %}
+    <div class="dash-table-wrap">
+      <table class="dash-table">
+        <thead><tr>{% if user.is_super_admin %}<th>Persona</th>{% endif %}<th>Título</th><th>Sección</th><th>Fecha</th><th>Estado</th></tr></thead>
+        <tbody>
+          {% for s in recent_suggestions %}
+          <tr onclick="window.location='{% url 'suggestions:detail' s.pk %}'" style="cursor:pointer;">
+            {% if user.is_super_admin %}<td>{{ s.user.display_name }}</td>{% endif %}
+            <td>{{ s.title }}</td>
+            <td>{{ s.section|default:"—" }}</td>
+            <td>{{ s.created_at|date:"d/m/Y" }}</td>
+            <td><span class="badge badge-{{ s.status }}">{{ s.get_status_display }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty-state">Todavía no hay registros.</p>
+  {% endif %}
+  <p style="margin-top:1rem;"><a class="btn ghost" href="{% url 'suggestions:create' %}">+ Nueva sugerencia</a></p>
+</div>
+
+{% if user.is_super_admin %}
+<div class="dash-panel">
+  <h2>Actividad reciente</h2>
+  {% if recent_activity %}
+    <div class="dash-table-wrap">
+      <table class="dash-table">
+        <thead><tr><th>Fecha</th><th>Usuario</th><th>Acción</th></tr></thead>
+        <tbody>
+          {% for log in recent_activity %}
+          <tr><td>{{ log.created_at|date:"d/m/Y H:i" }}</td><td>{{ log.user.display_name|default:"Sistema" }}</td><td>{{ log.action }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty-state">Todavía no hay registros.</p>
+  {% endif %}
+</div>
+{% endif %}
+
+{% endblock %}

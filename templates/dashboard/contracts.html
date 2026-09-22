@@ -1,0 +1,45 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Contrataciones — McCormick{% endblock %}
+{% block page_title %}Contrataciones{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dash-panel">
+  <h2>Registrar nueva contratación</h2>
+  <form method="post" class="dash-form" data-loading-text="Guardando...">
+    {% csrf_token %}
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem;">
+      {% for field in form %}
+        <div class="field-group">
+          <label class="field-label">{{ field.label }}</label>
+          {{ field }}
+        </div>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn primary">Guardar</button>
+  </form>
+</div>
+
+<div class="dash-panel">
+  <h2>Tabla de contrataciones</h2>
+  {% if contracts %}
+    <div class="dash-table-wrap">
+      <table class="dash-table">
+        <thead><tr><th>Fecha</th><th>Proyecto</th><th>Cliente</th><th>Servicio</th><th>Valor</th><th>Estado</th><th></th></tr></thead>
+        <tbody>
+          {% for c in contracts %}
+          <tr>
+            <td>{{ c.date|date:"d/m/Y" }}</td><td>{{ c.project }}</td><td>{{ c.client }}</td>
+            <td>{{ c.service }}</td><td>${{ c.amount }}</td>
+            <td><span class="badge badge-{{ c.status }}">{{ c.get_status_display }}</span></td>
+            <td><a href="{% url 'finance:contract_edit' c.pk %}" style="color:var(--gold);">Editar</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty-state">Todavía no hay registros.</p>
+  {% endif %}
+</div>
+{% endblock %}

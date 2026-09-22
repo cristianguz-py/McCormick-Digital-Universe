@@ -1,0 +1,155 @@
+{% extends "base_public.html" %}
+{% load static %}
+{% block title %}C&amp;MC Entertainment Support{% endblock %}
+{% block meta_description %}C&MC Entertainment Support: Ian McCormick (marketing digital) + Cristian Guzmán (programación y diseño web). Parte de McCormick Digital Universe.{% endblock %}
+{% block og_title %}C&MC Entertainment Support{% endblock %}
+{% block og_description %}Marketing digital + programación y diseño web.{% endblock %}
+{% block favicon_glyph %}◆{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{% static 'css/cmc.css' %}">{% endblock %}
+
+{% block nav_logo %}<span class="logo-universe">McCormick</span><span class="logo-sep">/</span><span class="logo-mark">C&amp;MC</span>{% endblock %}
+
+{% block content %}
+
+<section class="cmc-hero">
+  <div class="wrap cmc-hero-inner">
+    <p class="eyebrow-line">McCormick Digital Universe</p>
+    <h1>C&amp;<span class="accent">MC</span></h1>
+    <p class="subline">Entertainment Support</p>
+    <p class="lede">Marketing digital y desarrollo tecnológico bajo un mismo techo. Dos formas de pensar — estrategia y construcción — que trabajan juntas para dar presencia y forma a proyectos creativos.</p>
+  </div>
+</section>
+
+<section id="equipo">
+  <div class="wrap">
+
+    <div class="person-block reveal">
+      <div class="person-media media-placeholder">
+        <span class="media-placeholder__word">Ian<br>McCormick</span>
+        <span class="media-placeholder__note">Fotografía próximamente</span>
+      </div>
+      <div class="person-text">
+        <p class="person-role">¿Quién es Ian?</p>
+        <h2 class="person-name">Ian McCormick</h2>
+        <p>Ian está vinculado al marketing digital: la parte de C&amp;MC que piensa en cómo un proyecto se presenta, se comunica y llega a las personas correctas.</p>
+        <p>Estrategia, contenido, posicionamiento y presencia digital son el terreno donde se mueve — construir una identidad online coherente para cada proyecto que pasa por C&amp;MC.</p>
+      </div>
+    </div>
+
+    <div class="person-block reverse reveal">
+      <div class="person-media media-placeholder">
+        <span class="media-placeholder__word">Cristian<br>Guzmán</span>
+        <span class="media-placeholder__note">Fotografía próximamente</span>
+      </div>
+      <div class="person-text">
+        <p class="person-role">¿Quién es Cristian?</p>
+        <h2 class="person-name">Cristian Guzmán</h2>
+        <p>Cristian está enfocado en programación y diseño web: interfaces, experiencias digitales y la construcción técnica de cada sitio que nace dentro de C&amp;MC — incluyendo este mismo universo.</p>
+        <p>Su trabajo es traducir una idea o una marca en un sitio real, funcional y cuidado en cada detalle.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="combo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Juntos</p>
+      <h2 class="section-title">Marketing + Tecnología.</h2>
+    </div>
+    <div class="combo-grid">
+      <div class="combo-side">
+        <p class="combo-label">Ian McCormick</p>
+        <p class="combo-name">Marketing Digital</p>
+        <p class="combo-role">Estrategia y presencia</p>
+      </div>
+      <div class="combo-plus">+</div>
+      <div class="combo-side">
+        <p class="combo-label">Cristian Guzmán</p>
+        <p class="combo-name">Programación + Diseño Web</p>
+        <p class="combo-role">Construcción y experiencia</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="areas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Áreas</p>
+      <h2 class="section-title">Dos disciplinas, una misma dirección.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <p class="kicker">Marketing Digital</p>
+        <h3>Ian McCormick</h3>
+        <p>Presencia digital, comunicación y posicionamiento pensados para que un proyecto se conecte con su audiencia real.</p>
+      </div>
+      <div class="service-card">
+        <p class="kicker">Programación + Diseño Web</p>
+        <h3>Cristian Guzmán</h3>
+        <p>Sitios web, interfaces y experiencias digitales construidas a la medida de cada proyecto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Galería</p>
+      <h2 class="section-title">C&amp;MC en imágenes.</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item g1 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">01</span></div>
+      <div class="g-item g2 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">02</span></div>
+      <div class="g-item g3 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">03</span></div>
+      <div class="g-item g4 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">04</span></div>
+      <div class="g-item g5 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">05</span></div>
+      <div class="g-item g6 media-placeholder" aria-hidden="true"><span class="media-placeholder__word">06</span></div>
+    </div>
+    <p class="media-placeholder__note" style="margin-top:1.2rem; -webkit-text-stroke:0;">Espacio preparado para las fotografías reales de C&amp;MC — próximamente.</p>
+  </div>
+</section>
+
+<section class="global-contact" id="contacto">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Contacto</p>
+      <h2 class="section-title">¿Necesitas apoyo en marketing y desarrollo digital?</h2>
+    </div>
+    <a class="btn primary" id="contactCta" href="#" data-track-event="cta_click" data-track-page="cmc">Hablar con nosotros</a>
+    <p style="margin-top:1.4rem;"><a class="universe-back" href="{% url 'core:home' %}">← Volver a McCormick Digital Universe</a></p>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block footer_brand %}<p class="logo-mark">C&amp;MC</p>{% endblock %}
+{% block footer_tag %}Entertainment Support — parte de <a class="universe-back" href="{% url 'core:home' %}">McCormick Digital Universe</a>{% endblock %}
+{% block footer_cols %}
+<div class="footer-col">
+  <h4>Navegar</h4>
+  <a href="#equipo">Equipo</a>
+  <a href="#areas">Áreas</a>
+  <a href="#galeria">Galería</a>
+</div>
+<div class="footer-col">
+  <h4>Universo</h4>
+  <a href="{% url 'core:home' %}">Inicio</a>
+  <a href="{% url 'core:maco' %}">Maco</a>
+  <a href="{% url 'core:melanie' %}">Melanie</a>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('contactCta').addEventListener('click', (e) => {
+    e.preventDefault();
+    const wa = document.getElementById('whatsappFloat');
+    wa.click();
+    wa.scrollIntoView({ block: 'end', behavior: 'smooth' });
+  });
+</script>
+{% endblock %}

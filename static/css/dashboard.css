@@ -1,0 +1,90 @@
+/* DASHBOARD — negro + azul oscuro + dorado */
+.dash-shell{ display:flex; min-height:100vh; }
+
+.dash-sidebar{
+  width:260px; flex-shrink:0; background:#0b0f16; border-right:1px solid var(--line);
+  display:flex; flex-direction:column; padding:1.6rem 1.2rem;
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+.dash-brand{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:1.3rem; color:var(--ink); margin-bottom:2rem; padding:0 0.4rem; }
+.dash-brand .accent{ color:var(--gold); }
+.dash-nav{ display:flex; flex-direction:column; gap:0.2rem; flex:1; }
+.dash-nav a{
+  display:flex; align-items:center; gap:0.7rem; padding:0.7rem 0.8rem; border-radius:6px;
+  font-size:0.9rem; color:var(--ink-dim); transition:background .2s ease, color .2s ease;
+}
+.dash-nav a:hover{ background:rgba(255,255,255,0.04); color:var(--ink); }
+.dash-nav a.active{ background:rgba(199,154,86,0.12); color:var(--gold); }
+.dash-nav form{ margin-top:auto; }
+.dash-logout{
+  width:100%; text-align:left; padding:0.7rem 0.8rem; border-radius:6px;
+  color:var(--ink-faint); font-size:0.88rem; transition:color .2s ease, background .2s ease;
+}
+.dash-logout:hover{ color:#e6a3a3; background:rgba(230,80,80,0.08); }
+
+.dash-main{ flex:1; min-width:0; }
+.dash-topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.2rem 2rem; border-bottom:1px solid var(--line); position:sticky; top:0;
+  background:rgba(12,10,8,0.85); backdrop-filter:blur(8px); z-index:10;
+}
+.dash-topbar h1{ font-family:var(--serif); font-size:1.4rem; font-weight:500; color:var(--ink); }
+.dash-user{ font-size:0.85rem; color:var(--ink-dim); }
+.dash-user strong{ color:var(--ink); }
+
+.dash-content{ padding:2rem; max-width:1200px; }
+
+.dash-sidebar-toggle{ display:none; }
+
+@media (max-width:960px){
+  .dash-shell{ flex-direction:column; }
+  .dash-sidebar{ position:fixed; left:0; top:0; bottom:0; z-index:200; transform:translateX(-100%); transition:transform .3s ease; }
+  .dash-sidebar.open{ transform:translateX(0); }
+  .dash-sidebar-toggle{
+    display:inline-flex; align-items:center; gap:0.5rem; background:none; border:1px solid var(--line-strong);
+    border-radius:6px; padding:0.5rem 0.8rem; color:var(--ink); font-size:0.85rem;
+  }
+  .dash-content{ padding:1.4rem; }
+  .dash-topbar{ padding:1rem 1.2rem; }
+}
+
+/* ---------- Tarjetas / KPIs ---------- */
+.kpi-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:1rem; margin-bottom:2rem; }
+.kpi-card{ border:1px solid var(--line); border-radius:8px; padding:1.2rem 1.3rem; background:var(--bg-panel); }
+.kpi-card .kpi-label{ font-size:0.78rem; color:var(--ink-faint); letter-spacing:0.02em; }
+.kpi-card .kpi-value{ font-family:var(--serif); font-size:1.9rem; color:var(--ink); margin-top:0.3rem; }
+.kpi-card .kpi-value.empty{ color:var(--ink-faint); font-size:1.1rem; font-style:italic; }
+
+.dash-panel{ border:1px solid var(--line); border-radius:8px; padding:1.6rem; background:var(--bg-panel); margin-bottom:1.6rem; }
+.dash-panel h2{ font-family:var(--serif); font-size:1.2rem; color:var(--ink); margin-bottom:1.1rem; font-weight:500; }
+
+/* ---------- Tablas ---------- */
+.dash-table-wrap{ overflow-x:auto; }
+table.dash-table{ width:100%; border-collapse:collapse; font-size:0.88rem; }
+table.dash-table th{ text-align:left; color:var(--ink-faint); font-weight:500; padding:0.7rem 0.8rem; border-bottom:1px solid var(--line-strong); white-space:nowrap; }
+table.dash-table td{ padding:0.7rem 0.8rem; border-bottom:1px solid var(--line); color:var(--ink-dim); vertical-align:middle; }
+table.dash-table tr:hover td{ color:var(--ink); }
+
+.badge{ display:inline-block; padding:0.25rem 0.7rem; border-radius:999px; font-size:0.75rem; }
+.badge-pending{ background:rgba(199,154,86,0.15); color:var(--gold); }
+.badge-review, .badge-in_progress{ background:rgba(91,143,214,0.15); color:#8fb4e8; }
+.badge-completed, .badge-paid, .badge-done, .badge-confirmed{ background:rgba(90,190,120,0.15); color:#7fd39a; }
+.badge-rejected, .badge-cancelled{ background:rgba(200,80,80,0.15); color:#e6a3a3; }
+
+/* ---------- Formularios de dashboard ---------- */
+.dash-form .field-group{ margin-bottom:1.1rem; }
+.dash-form textarea.field-input{ resize:vertical; }
+.dash-form .btn{ margin-top:0.4rem; }
+
+/* ---------- Toasts (sin alert()) ---------- */
+.toast-stack{ position:fixed; top:1.2rem; right:1.2rem; z-index:500; display:flex; flex-direction:column; gap:0.6rem; }
+.toast{
+  padding:0.85rem 1.1rem; border-radius:6px; font-size:0.88rem; max-width:320px;
+  background:var(--bg-panel2); border:1px solid var(--line-strong); color:var(--ink);
+  animation:toastIn .3s ease;
+}
+.toast.success{ border-color:rgba(90,190,120,0.5); }
+.toast.error{ border-color:rgba(200,80,80,0.5); }
+@keyframes toastIn{ from{ opacity:0; transform:translateY(-8px); } to{ opacity:1; transform:none; } }
+
+.empty-state{ color:var(--ink-faint); font-style:italic; padding:1.2rem 0; }

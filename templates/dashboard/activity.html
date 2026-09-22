@@ -1,0 +1,22 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Actividad — McCormick{% endblock %}
+{% block page_title %}Actividad reciente{% endblock %}
+
+{% block dashboard_content %}
+<div class="dash-panel">
+  {% if logs %}
+    <div class="dash-table-wrap">
+      <table class="dash-table">
+        <thead><tr><th>Fecha</th><th>Usuario</th><th>Acción</th></tr></thead>
+        <tbody>
+          {% for log in logs %}
+          <tr><td>{{ log.created_at|date:"d/m/Y H:i" }}</td><td>{{ log.user.display_name|default:"Sistema" }}</td><td>{{ log.action }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty-state">Todavía no hay registros.</p>
+  {% endif %}
+</div>
+{% endblock %}

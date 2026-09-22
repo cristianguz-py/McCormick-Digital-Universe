@@ -1,0 +1,106 @@
+{% extends "base_public.html" %}
+{% load static %}
+{% block title %}McCormick — Universo Creativo{% endblock %}
+{% block meta_description %}McCormick Digital Universe: el punto de entrada a Maco Music, C&MC Entertainment Support y Melanie McCormick.{% endblock %}
+{% block og_title %}McCormick — Universo Creativo{% endblock %}
+{% block og_description %}Música, marketing + tecnología, y danza — tres universos, una misma identidad.{% endblock %}
+{% block favicon_glyph %}✦{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{% static 'css/home.css' %}">{% endblock %}
+
+{% block content %}
+{% with active_page="home" %}{% endwith %}
+
+<section class="home-hero">
+  <div class="wrap home-hero-inner">
+    <p class="eyebrow-line">McCormick Digital Universe</p>
+    <h1>¿Quiénes son<br>los <span class="accent">McCormick</span>?</h1>
+    <p class="lede">Un mismo apellido, distintos talentos. Música, marketing, tecnología y danza conviven aquí como proyectos independientes que comparten una misma identidad — cada uno con su propio universo, su propia voz y su propio espacio.</p>
+  </div>
+</section>
+
+<section id="universos">
+  <div class="wrap">
+    <div class="universe-intro reveal">
+      <p class="kicker">Tres universos</p>
+      <h2 class="section-title">Un mismo apellido, distintos caminos.</h2>
+    </div>
+
+    <div class="universe-grid">
+
+      <a class="identity-card identity-card--maco" href="{% url 'core:maco' %}">
+        <div class="identity-card__media">
+          <img src="{% static 'images/maco/foto4.jpg' %}" alt="Maco cantando en escenario" loading="lazy">
+          <span class="identity-card__num">01</span>
+          <p class="identity-card__overline">Música</p>
+          <h3 class="identity-card__title">Maco Music</h3>
+        </div>
+        <div class="identity-card__body">
+          <p class="identity-card__desc">Jonathan McCormick. Cantante en We Are Fest, El Profe de Fácil Cantar, fundador de Cantan x el Mundo.</p>
+          <div class="identity-card__line"></div>
+          <span class="identity-card__cta">Saber más sobre Maco →</span>
+        </div>
+      </a>
+
+      <a class="identity-card identity-card--cmc" href="{% url 'core:cmc' %}">
+        <div class="identity-card__media media-placeholder">
+          <span class="identity-card__num">02</span>
+          <p class="identity-card__overline">Marketing + Tecnología</p>
+          <span class="media-placeholder__word">C&amp;MC</span>
+          <h3 class="identity-card__title">C&MC Support</h3>
+        </div>
+        <div class="identity-card__body">
+          <p class="identity-card__desc">Ian McCormick + Cristian Guzmán. Marketing digital y programación / diseño web, trabajando juntos.</p>
+          <div class="identity-card__line"></div>
+          <span class="identity-card__cta">Saber más sobre C&amp;MC →</span>
+        </div>
+      </a>
+
+      <a class="identity-card identity-card--melanie" href="{% url 'core:melanie' %}">
+        <div class="identity-card__media media-placeholder">
+          <span class="identity-card__num">03</span>
+          <p class="identity-card__overline">Danza</p>
+          <span class="media-placeholder__word">Melanie</span>
+          <h3 class="identity-card__title">Melanie McCormick</h3>
+        </div>
+        <div class="identity-card__body">
+          <p class="identity-card__desc">Bailarina. Movimiento, expresión y disciplina artística.</p>
+          <div class="identity-card__line"></div>
+          <span class="identity-card__cta">Saber más sobre Melanie →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="global-contact home-contact" id="contacto">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Contacto</p>
+      <h2 class="section-title">¿Quieres trabajar con alguno de ellos?</h2>
+    </div>
+    <div class="contact-prompts">
+      <div class="contact-prompt">
+        <p>¿Quieres contactar a Maco para música, clases o presentaciones? <a href="{% url 'core:maco' %}#contacto">Ir a su página →</a></p>
+      </div>
+      <div class="contact-prompt">
+        <p>¿Necesitas apoyo en marketing digital o desarrollo web? <a href="{% url 'core:cmc' %}#contacto">Conocer C&amp;MC →</a></p>
+      </div>
+      <div class="contact-prompt">
+        <p>¿Quieres contactar a Melanie para proyectos de danza? <a href="{% url 'core:melanie' %}#contacto">Ir a su página →</a></p>
+      </div>
+    </div>
+    <a class="btn primary" id="contactCta" href="#" data-track-event="cta_click" data-track-page="home">Hablar con nosotros</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('contactCta').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('whatsappFloat').click();
+    document.getElementById('whatsappFloat').scrollIntoView({ block: 'end', behavior: 'smooth' });
+  });
+</script>
+{% endblock %}

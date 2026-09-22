@@ -1,0 +1,60 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Ingresos — McCormick{% endblock %}
+{% block page_title %}Ingresos{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <p class="kpi-label">Total registrado</p>
+    {% if totals.total %}<p class="kpi-value">${{ totals.total }}</p>{% else %}<p class="kpi-value empty">Sin datos</p>{% endif %}
+  </div>
+  <div class="kpi-card">
+    <p class="kpi-label">Pagado</p>
+    {% if totals.pagado %}<p class="kpi-value">${{ totals.pagado }}</p>{% else %}<p class="kpi-value empty">Sin datos</p>{% endif %}
+  </div>
+  <div class="kpi-card">
+    <p class="kpi-label">Pendiente</p>
+    {% if totals.pendiente %}<p class="kpi-value">${{ totals.pendiente }}</p>{% else %}<p class="kpi-value empty">Sin datos</p>{% endif %}
+  </div>
+</div>
+
+<div class="dash-panel">
+  <h2>Registrar nuevo ingreso</h2>
+  <form method="post" class="dash-form" data-loading-text="Guardando...">
+    {% csrf_token %}
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem;">
+      {% for field in form %}
+        <div class="field-group">
+          <label class="field-label">{{ field.label }}</label>
+          {{ field }}
+        </div>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn primary">Guardar</button>
+  </form>
+</div>
+
+<div class="dash-panel">
+  <h2>Tabla de ingresos</h2>
+  {% if incomes %}
+    <div class="dash-table-wrap">
+      <table class="dash-table">
+        <thead><tr><th>Fecha</th><th>Proyecto</th><th>Cliente</th><th>Concepto</th><th>Valor</th><th>Estado</th><th></th></tr></thead>
+        <tbody>
+          {% for i in incomes %}
+          <tr>
+            <td>{{ i.date|date:"d/m/Y" }}</td><td>{{ i.project }}</td><td>{{ i.client }}</td>
+            <td>{{ i.concept }}</td><td>${{ i.amount }}</td>
+            <td><span class="badge badge-{{ i.status }}">{{ i.get_status_display }}</span></td>
+            <td><a href="{% url 'finance:income_edit' i.pk %}" style="color:var(--gold);">Editar</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty-state">Todavía no hay registros.</p>
+  {% endif %}
+</div>
+{% endblock %}

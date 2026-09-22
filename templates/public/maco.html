@@ -1,0 +1,200 @@
+{% extends "base_public.html" %}
+{% load static %}
+{% block title %}Maco — Jonathan McCormick | Cantante{% endblock %}
+{% block meta_description %}Maco (Jonathan McCormick): cantante en We Are Fest, El Profe de Fácil Cantar, fundador de Cantan x el Mundo. Parte de McCormick Digital Universe.{% endblock %}
+{% block og_title %}Maco — Jonathan McCormick{% endblock %}
+{% block og_description %}Cantante. El Profe. Fundador de Cantan x el Mundo.{% endblock %}
+{% block favicon_glyph %}🎤{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{% static 'css/maco.css' %}">{% endblock %}
+
+{% block nav_logo %}<span class="logo-universe">McCormick</span><span class="logo-sep">/</span><span class="logo-mark">Maco</span>{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="hero-photo" aria-hidden="true">
+    <img src="{% static 'images/maco/foto4.jpg' %}" alt="" fetchpriority="high">
+  </div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow-line seq" style="--d:0">Cantante — Riohacha</p>
+      <h1 class="wordmark seq" style="--d:1">Mac<span class="accent">o</span></h1>
+      <p class="sub-name seq" style="--d:2">Jonathan McCormick</p>
+      <p class="tagline seq" style="--d:3">Canta. Enseña.<br>Construye comunidad.</p>
+      <ul class="identity-list seq" style="--d:4">
+        <li>Cantante en We Are Fest</li>
+        <li>El Profe — clases de canto en Fácil Cantar</li>
+        <li>Fundador de Cantan x el Mundo</li>
+      </ul>
+      <div class="hero-socials seq" style="--d:5">
+        <a href="https://www.instagram.com/maco.music_/" target="_blank" rel="noopener" aria-label="Instagram de Maco">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.25.06 2.1.26 2.85.55.77.3 1.42.7 2.07 1.35.65.65 1.05 1.3 1.35 2.07.29.75.49 1.6.55 2.85.06 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.06 1.25-.26 2.1-.55 2.85-.3.77-.7 1.42-1.35 2.07-.65.65-1.3 1.05-2.07 1.35-.75.29-1.6.49-2.85.55-1.25.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.25-.06-2.1-.26-2.85-.55-.77-.3-1.42-.7-2.07-1.35-.65-.65-1.05-1.3-1.35-2.07-.29-.75-.49-1.6-.55-2.85C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.06-1.25.26-2.1.55-2.85.3-.77.7-1.42 1.35-2.07.65-.65 1.3-1.05 2.07-1.35.75-.29 1.6-.49 2.85-.55C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.51.01-4.75.07-1.02.05-1.57.22-1.94.36-.49.19-.84.42-1.2.79-.37.36-.6.71-.79 1.2-.14.37-.31.92-.36 1.94C3.01 8.49 3 8.86 3 12s.01 3.51.07 4.75c.05 1.02.22 1.57.36 1.94.19.49.42.84.79 1.2.36.37.71.6 1.2.79.37.14.92.31 1.94.36 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c1.02-.05 1.57-.22 1.94-.36.49-.19.84-.42 1.2-.79.37-.36.6-.71.79-1.2.14-.37.31-.92.36-1.94.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.05-1.02-.22-1.57-.36-1.94-.19-.49-.42-.84-.79-1.2-.36-.37-.71-.6-1.2-.79-.37-.14-.92-.31-1.94-.36C15.51 4.01 15.14 4 12 4zm0 3.4A4.6 4.6 0 1 1 7.4 12 4.6 4.6 0 0 1 12 7.4zm0 1.8a2.8 2.8 0 1 0 2.8 2.8A2.8 2.8 0 0 0 12 9.2zm4.8-2.55a1.08 1.08 0 1 1-1.08-1.08 1.08 1.08 0 0 1 1.08 1.08z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@maco.music" target="_blank" rel="noopener" aria-label="TikTok de Maco">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.2v13.2a2.9 2.9 0 1 1-2.05-2.77V9.1a6.1 6.1 0 1 0 5.25 6.05V8.63a7.9 7.9 0 0 0 4.6 1.47V6.9a4.6 4.6 0 0 1-4.6-4.6z"/></svg>
+        </a>
+        <a href="https://www.threads.com/@maco.music_" target="_blank" rel="noopener" aria-label="Threads de Maco">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 2C7.1 2 3.6 5.2 3.4 10.2h2.3c.2-3.7 2.6-6 6.4-6 3.9 0 6.3 2.3 6.3 5.6 0 2.4-1.2 4-3.1 4.9.1-.5.1-1 .1-1.6 0-2.9-2-4.7-5-4.7-3.1 0-5.4 2-5.4 5 0 3.1 2.4 5.3 6 5.3 4.6 0 7.6-2.6 7.6-6.7v-.3c1.6-1.1 2.5-2.9 2.5-5C20.5 5.7 17 2 12.2 2zm-.6 15.4c-2.2 0-3.6-1.2-3.6-2.9 0-1.6 1.3-2.7 3.2-2.7 1.7 0 2.9 1 2.9 2.7 0 1.8-1 2.9-2.5 2.9z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="line"></div><span>scroll</span></div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal">
+      <img src="{% static 'images/maco/foto_de_maco.jpg' %}" alt="Jonathan McCormick, sonriendo, fuera del escenario" loading="lazy">
+    </div>
+    <div class="about-text reveal">
+      <p class="kicker">Sobre Maco</p>
+      <h2 class="section-title">No es solo un cantante.</h2>
+      <p>Jonathan McCormick canta bajo el nombre de Maco. Fue parte de A Otro Nivel Colombia, hoy es una de las voces de We Are Fest, y también responde a otro nombre: El Profe — el fundador de Cantan x el Mundo y la voz detrás de las clases de Fácil Cantar.</p>
+      <p>Escenario y salón de clase son la misma pasión, contada de dos formas distintas.</p>
+      <div class="facets">
+        <span>Artista</span>
+        <span>Docente</span>
+        <span>Creador</span>
+        <span>Emprendedor musical</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trayectoria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Trayectoria</p>
+      <h2 class="section-title">Distintas etapas, una misma voz.</h2>
+    </div>
+
+    <div class="path-list">
+
+      <div class="path-item">
+        <div class="path-mark" aria-hidden="true">I</div>
+        <div class="path-body">
+          <p class="path-role">Televisión</p>
+          <h3 class="path-title">A Otro Nivel Colombia</h3>
+          <p class="path-desc">Su paso por el programa lo puso frente a un público exigente, en la televisión nacional colombiana.</p>
+        </div>
+        <div class="path-visual media-placeholder" aria-hidden="true">
+          <span class="media-placeholder__word">A Otro<br>Nivel</span>
+        </div>
+      </div>
+
+      <div class="path-item">
+        <div class="path-mark" aria-hidden="true">II</div>
+        <div class="path-body">
+          <p class="path-role">En escena</p>
+          <h3 class="path-title">We Are Fest</h3>
+          <p class="path-desc">Hoy Maco es una de las voces de @wearefest_, llevando su interpretación a tarimas y a nuevos públicos.</p>
+        </div>
+        <div class="path-visual"><img src="{% static 'images/maco/foto3.jpg' %}" alt="Maco cantando en vivo junto a la banda de We Are Fest" loading="lazy"></div>
+      </div>
+
+      <div class="path-item">
+        <div class="path-mark" aria-hidden="true">III</div>
+        <div class="path-body">
+          <p class="path-role">Fuera del escenario</p>
+          <h3 class="path-title">El Profe</h3>
+          <p class="path-desc">Con la misma pasión con la que interpreta, Maco enseña. Es el rostro de Fácil Cantar y el fundador de Cantan x el Mundo.</p>
+        </div>
+        <div class="path-visual"><img src="{% static 'images/maco/foto1.jpg' %}" alt="Maco cantando en una presentación al aire libre" loading="lazy"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<figure class="fest-banner" id="festBanner">
+  <img src="{% static 'images/maco/foto2.jpg' %}" alt="Maco cantando con gesto expresivo bajo luces de escenario" loading="lazy" data-parallax>
+  <figcaption class="fest-caption">
+    <p class="kicker">We Are Fest</p>
+    <h3>Una de las voces del festival.</h3>
+    <p class="fest-handle">@wearefest_</p>
+  </figcaption>
+</figure>
+
+<section class="projects" id="proyectos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Proyectos</p>
+      <h2 class="section-title">Lo que construye fuera de la tarima.</h2>
+    </div>
+
+    <div class="project-block project-a">
+      <div class="project-name">El Profe</div>
+      <div class="project-body">
+        <p class="project-desc">La faceta educativa de Maco. Antes de ser El Profe en redes, es el profesor que enseña a cantar con la misma exigencia y cercanía que muestra sobre un escenario.</p>
+        <p class="project-note">Metodología y modalidades de clase: próximamente en este espacio.</p>
+      </div>
+    </div>
+
+    <div class="project-block project-b">
+      <div class="project-name">Fácil Cantar</div>
+      <div class="project-body">
+        <p class="project-desc">El espacio donde Maco enseña técnica vocal. Una extensión directa de su faceta como El Profe, pensada para quienes quieren aprender a cantar.</p>
+        <a class="project-link" href="https://www.instagram.com/facilcantar/" target="_blank" rel="noopener">Ver Fácil Cantar en Instagram</a>
+      </div>
+    </div>
+
+    <div class="project-block project-c">
+      <div class="project-name">Cantan x el Mundo</div>
+      <div class="project-body">
+        <p class="project-desc">El proyecto fundado por Maco que conecta el canto con distintos públicos y lugares.</p>
+        <a class="project-link" href="https://www.instagram.com/cantanxelmundo/" target="_blank" rel="noopener">Ver Cantan x el Mundo en Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Galería</p>
+      <h2 class="section-title">En escena y fuera de ella.</h2>
+    </div>
+    <div class="gallery-grid">
+      <button type="button" class="g-item g1"><img src="{% static 'images/maco/foto4.jpg' %}" alt="Maco cantando en escenario, primer plano" loading="lazy"></button>
+      <button type="button" class="g-item g2"><img src="{% static 'images/maco/foto3.jpg' %}" alt="Maco en presentación en vivo con la banda" loading="lazy"></button>
+      <button type="button" class="g-item g3"><img src="{% static 'images/maco/foto_de_maco.jpg' %}" alt="Jonathan McCormick fuera del escenario" loading="lazy"></button>
+      <button type="button" class="g-item g4"><img src="{% static 'images/maco/foto2.jpg' %}" alt="Maco cantando con gesto expresivo" loading="lazy"></button>
+      <button type="button" class="g-item g5"><img src="{% static 'images/maco/foto_de_maco_para_el_final.jpg' %}" alt="Maco cantando de cerca" loading="lazy"></button>
+      <button type="button" class="g-item g6"><img src="{% static 'images/maco/foto1.jpg' %}" alt="Maco cantando al aire libre con banda" loading="lazy"></button>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="contact-photo" aria-hidden="true"><img src="{% static 'images/maco/foto_de_maco_para_el_final.jpg' %}" alt="" loading="lazy" data-parallax></div>
+  <div class="wrap contact-inner">
+    <h2 class="contact-title">¿Trabajamos<br>juntos?</h2>
+    <p class="contact-sub">Para management, colaboraciones, clases o presentaciones en vivo, escríbele directamente por sus redes.</p>
+    <div class="contact-actions">
+      <a class="btn primary" href="https://www.instagram.com/maco.music_/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn ghost" href="https://www.tiktok.com/@maco.music" target="_blank" rel="noopener">TikTok</a>
+      <a class="btn ghost" href="https://www.threads.com/@maco.music_" target="_blank" rel="noopener">Threads</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block footer_brand %}<p class="logo-mark">Maco</p>{% endblock %}
+{% block footer_tag %}Jonathan McCormick — parte de <a class="universe-back" href="{% url 'core:home' %}">McCormick Digital Universe</a>{% endblock %}
+{% block footer_cols %}
+<div class="footer-col">
+  <h4>Navegar</h4>
+  <a href="#sobre">Sobre Maco</a>
+  <a href="#trayectoria">Trayectoria</a>
+  <a href="#proyectos">Proyectos</a>
+  <a href="#galeria">Galería</a>
+</div>
+<div class="footer-col">
+  <h4>Redes</h4>
+  <a href="https://www.instagram.com/maco.music_/" target="_blank" rel="noopener">Instagram</a>
+  <a href="https://www.tiktok.com/@maco.music" target="_blank" rel="noopener">TikTok</a>
+  <a href="https://www.threads.com/@maco.music_" target="_blank" rel="noopener">Threads</a>
+</div>
+{% endblock %}

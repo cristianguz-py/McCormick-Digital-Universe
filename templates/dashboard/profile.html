@@ -1,0 +1,17 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Mi perfil — McCormick{% endblock %}
+{% block page_title %}Mi perfil{% endblock %}
+
+{% block dashboard_content %}
+<div class="dash-panel" style="max-width:480px;">
+  <h2>Datos de la cuenta</h2>
+  <p style="color:var(--ink-dim); margin-bottom:0.6rem;"><strong style="color:var(--ink);">Nombre:</strong> {{ user.display_name }}</p>
+  <p style="color:var(--ink-dim); margin-bottom:0.6rem;"><strong style="color:var(--ink);">Usuario:</strong> {{ user.username }}</p>
+  <p style="color:var(--ink-dim);"><strong style="color:var(--ink);">Rol:</strong> {{ user.get_role_display }}</p>
+</div>
+
+<div class="dash-panel" style="max-width:480px;">
+  <h2>Cambiar contraseña</h2>
+  <p><a class="btn primary" href="{% url 'accounts:password_change' %}">Cambiar mi contraseña</a></p>
+</div>
+{% endblock %}

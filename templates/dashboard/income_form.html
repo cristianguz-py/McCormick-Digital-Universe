@@ -1,0 +1,18 @@
+{% extends "base_dashboard.html" %}
+{% block title %}Editar ingreso — McCormick{% endblock %}
+{% block page_title %}Editar ingreso{% endblock %}
+{% block dashboard_content %}
+<div class="dash-panel" style="max-width:560px;">
+  <form method="post" class="dash-form" data-loading-text="Guardando...">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="field-group">
+        <label class="field-label">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn primary">Guardar cambios</button>
+    <a class="btn ghost" href="{% url 'finance:income_list' %}">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

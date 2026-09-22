@@ -1,0 +1,91 @@
+/* ---------- HOME: hero "¿Quiénes son los McCormick?" ---------- */
+.home-hero{
+  min-height:78vh;
+  display:flex; align-items:center;
+  padding-top:7rem;
+  border-bottom:1px solid var(--line);
+}
+.home-hero-inner{ max-width:52rem; }
+.home-hero .eyebrow-line{ font-size:0.85rem; color:var(--ink-dim); letter-spacing:0.03em; margin-bottom:1.4rem; }
+.home-hero h1{
+  font-family:var(--serif); font-style:italic; font-weight:600;
+  font-size:clamp(2.6rem, 6.4vw, 5rem);
+  line-height:1.04;
+  color:var(--ink);
+}
+.home-hero h1 .accent{ color:var(--gold); }
+.home-hero p.lede{
+  margin-top:1.8rem; max-width:56ch; font-size:1.12rem; color:var(--ink-dim); line-height:1.75;
+}
+
+/* ---------- Tres universos ---------- */
+.universe-intro{ max-width:48ch; margin-bottom:3.6rem; }
+
+.universe-grid{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:1.4rem;
+}
+.identity-card{
+  --card-accent: var(--gold);
+  position:relative;
+  display:flex; flex-direction:column;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  background:var(--bg-panel);
+  transition:border-color .35s ease, transform .35s ease;
+}
+.identity-card:hover{ border-color:var(--card-accent); transform:translateY(-4px); }
+
+.identity-card--maco{ --card-accent:#c79a56; }
+.identity-card--cmc{ --card-accent:#5b8fd6; }
+.identity-card--melanie{ --card-accent:#c98fd6; }
+
+.identity-card__media{
+  position:relative; aspect-ratio:4/5; overflow:hidden;
+}
+.identity-card__media img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .9s var(--ease);
+}
+.identity-card:hover .identity-card__media img{ transform:scale(1.06); }
+.identity-card__media::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(0deg, rgba(12,10,8,0.92) 0%, rgba(12,10,8,0.15) 55%);
+}
+.identity-card__media.media-placeholder::after{ content:none; }
+.identity-card__num{
+  position:absolute; top:1rem; left:1rem; z-index:2;
+  font-family:var(--serif); font-style:italic; font-size:0.85rem; color:var(--ink-dim);
+}
+.identity-card__overline{
+  position:absolute; bottom:5.4rem; left:1.2rem; right:1.2rem; z-index:2;
+  font-size:0.78rem; letter-spacing:0.03em; color:var(--card-accent);
+}
+.identity-card__title{
+  position:absolute; bottom:1.3rem; left:1.2rem; right:1.2rem; z-index:2;
+  font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem, 2.4vw, 1.9rem); color:var(--ink);
+  transition:transform .35s var(--ease);
+}
+.identity-card:hover .identity-card__title{ transform:translateX(4px); }
+
+.identity-card__body{ padding:1.3rem 1.2rem 1.5rem; }
+.identity-card__desc{ color:var(--ink-dim); font-size:0.92rem; line-height:1.6; }
+.identity-card__line{
+  height:1px; width:2rem; background:var(--card-accent); margin:1.1rem 0 1.1rem;
+  transition:width .35s ease;
+}
+.identity-card:hover .identity-card__line{ width:3.4rem; }
+.identity-card__cta{
+  display:inline-flex; align-items:center; gap:0.5rem;
+  font-size:0.86rem; color:var(--card-accent);
+  border-bottom:1px solid transparent; padding-bottom:2px;
+  transition:border-color .3s ease;
+}
+.identity-card:hover .identity-card__cta{ border-color:var(--card-accent); }
+
+@media (max-width:900px){
+  .universe-grid{ grid-template-columns:1fr; }
+}
+
+/* ---------- CTA global heading override for home ---------- */
+.home-contact .section-title{ max-width:20ch; }
